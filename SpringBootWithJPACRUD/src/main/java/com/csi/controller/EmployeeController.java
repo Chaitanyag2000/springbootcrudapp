@@ -52,6 +52,11 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeServiceImpl.findAll().stream().sorted(Comparator.comparing(emp->emp.getEmpName())).toList());
     }
 
+    @GetMapping("/sortbysalary")
+    public ResponseEntity<List<Employee>>sortbysalary(){
+        return  ResponseEntity.ok(employeeServiceImpl.findAll().stream().sorted(Comparator.comparingDouble(emp->emp.getEmpSalary())).toList());
+    }
+
     @DeleteMapping("/deletebyid/{empId}")
     public ResponseEntity<String> deleteById(@PathVariable int empId){
         employeeServiceImpl.deleteById(empId);

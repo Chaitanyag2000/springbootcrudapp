@@ -47,7 +47,7 @@ public class EmployeeController {
 
         return ResponseEntity.ok(employeeServiceImpl.update(employee));
     }
-    @GetMapping
+    @GetMapping("/sortbyname")
     public ResponseEntity <List<Employee>> sortByName(){
         return ResponseEntity.ok(employeeServiceImpl.findAll().stream().sorted(Comparator.comparing(emp->emp.getEmpName())).toList());
     }

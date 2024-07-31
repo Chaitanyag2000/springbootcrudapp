@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,6 +46,10 @@ public class EmployeeController {
 
 
         return ResponseEntity.ok(employeeServiceImpl.update(employee));
+    }
+    @GetMapping
+    public ResponseEntity <List<Employee>> sortByName(){
+        return ResponseEntity.ok(employeeServiceImpl.findAll().stream().sorted(Comparator.comparing(emp->emp.getEmpName())).toList());
     }
 
     @DeleteMapping("/deletebyid/{empId}")
